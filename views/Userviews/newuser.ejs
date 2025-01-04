@@ -1,0 +1,30 @@
+
+<% layout("layouts/boilerplate.ejs") %>
+<form class="user-form needs-validation" novalidate method="post" action="/list/adduser">
+    <h1 class="head-form">User Registration</h1>
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="user[username]" name="user[username]" placeholder="Username" required>
+        </div>
+        <div class="valid-feedback">
+            looks good!
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="user[email]" name="user[email]" placeholder="Email" required>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="user[password]" name="user[password]" placeholder="Password" required>
+        </div>
+        <div class="valid-feedback">
+            strong password!
+        </div>
+    </div>
+   <button type="submit" class="sign-upbtn btn btn-primary">Sign up</button>
+   </form>

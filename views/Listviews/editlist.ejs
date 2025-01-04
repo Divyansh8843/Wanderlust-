@@ -1,0 +1,54 @@
+<% layout("layouts/boilerplate.ejs") %>
+    <form class="edit-form row g-3 needs-validation" novalidate method="post" action="/lists/<%=listing.id%>/edit" enctype="multipart/form-data">
+        <h1 class="head-form">Update Form</h1>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Title</label>
+            <input type="text" class="form-control" id="new_title" name="new_title" placeholder="<%=listing.title%>">
+            <div class="valid-feedback">
+                looks good!
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Description</label>
+            <input type="text" class="form-control" id="new_description" name="new_description"
+                placeholder="<%=listing.description%>" >
+                <div class="valid-feedback">
+                    good description!
+                </div>
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Preview Image</label>
+            <br>
+            <img src=<%=listing.image.url%> width="300" height="150" style="filter: blur(0.5px);">
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Upload New Image</label>
+            <input type="file" class="form-control" id="new_image" name="new_image">
+        </div>
+        <div class="col-12">
+            <label for="inputCity" class="form-label">Location</label>
+            <input type="text" class="form-control" id="new_location" name="new_location" placeholder="<%=listing.location%>">
+            <div class="valid-feedback">
+                greate location!
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="inputZip" class="form-label">Country</label>
+            <input type="text" class="form-control" id="new_country" name="new_country" placeholder="<%=listing.country%>">
+            <div class="valid-feedback">
+                good country!
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="inputZip" class="form-label">Price</label>
+            <input type="text" class="form-control" id="new_price" name="new_price"placeholder="<%=listing.price%>">
+            <div class="valid-feedback">
+                Best price!
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-12 editbtn">
+            <button type="submit" class="edit btn btn-primary">Edit</button>
+        </div>
+    </form>
