@@ -1,14 +1,14 @@
 const List = require("../models/Listing.js");
 const ExpressError = require("../utils/ExpressError.js")
-
 //control for all lists
 module.exports.index = async (req, res, next) => {
   let lists = await List.find();
+  // console.log(lists);
   res.render("./Listviews/showlists.ejs", { lists });
 };
-
 // control for show individual list
-module.exports.showlist = async (req, res, next) => {
+module.exports.showlist = async (req, res, next) =>
+{
   let { id } = req.params;
   let list = await List.findById(`${id}`)
     .populate({ path: "reviews", populate: { path: "reviewer" } })
@@ -21,15 +21,15 @@ module.exports.showlist = async (req, res, next) => {
   // console.log(list);
   res.render("./Listviews/showlist.ejs", { list });
 };
-
 // control for render addlist form
-module.exports.addform = async (req, res) => {
+module.exports.addform = async (req, res) =>
+{
   // console.log(req.user);
   res.render("./Listviews/addlist.ejs");
 };
-
 // control for add new list
-module.exports.addlist = async (req, res, next) => {
+module.exports.addlist = async (req, res, next) =>
+{
   let url = req.file.path;
   let filename = req.file.filename;
   if (!req.body.listing) {
@@ -46,7 +46,8 @@ module.exports.addlist = async (req, res, next) => {
 };
 
 // control for delete list
-module.exports.deletelist=async (req, res, next) => {
+module.exports.deletelist = async (req, res, next) =>
+{
     let { id } = req.params;
     let list=await List.findByIdAndDelete(`${id}`);
     if (!list) {
@@ -55,7 +56,6 @@ module.exports.deletelist=async (req, res, next) => {
     req.flash("success", "List Deleted successfully !");
     res.redirect("/lists");
 }
-
 // control for render edit form
 module.exports.editform = async (req, res, next) =>
 {
@@ -68,9 +68,9 @@ module.exports.editform = async (req, res, next) =>
   }
   res.render("./Listviews/editlist.ejs", {listing});
 }
-
 //control for editlist 
-module.exports.editlist = async (req, res, next) => {
+module.exports.editlist = async (req, res, next) =>
+{
   let { id } = req.params;
   let {
     new_title,

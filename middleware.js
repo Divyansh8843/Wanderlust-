@@ -1,6 +1,7 @@
 const List   = require("./models/Listing")
 const Review = require("./models/reviews")
 
+// logged in middleware
 module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
     req.session.redirectUrl = req.originalUrl;
@@ -10,6 +11,7 @@ module.exports.isLoggedIn = (req, res, next) => {
   next();
 };
 
+// redirect after log in middleware
 module.exports.saveRediretUrl = (req, res, next) =>
 {
   if(req.session.redirectUrl)
@@ -19,6 +21,7 @@ module.exports.saveRediretUrl = (req, res, next) =>
   next();
 }
 
+// if List owner then have permission for edit and delete
 module.exports.isOwner = async (req, res, next) =>
 {
   let { id } = req.params;
@@ -29,7 +32,7 @@ module.exports.isOwner = async (req, res, next) =>
   }
   next();
 };
-
+// if reveiw author then have permission for edit and delete
 module.exports.isAuthor = async (req, res, next) =>
 {
   let { id, reviewid } = req.params;

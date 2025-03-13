@@ -12,7 +12,6 @@
           event.preventDefault();
           event.stopPropagation();
         }
-
         form.classList.add("was-validated");
       },
       false
@@ -39,18 +38,31 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let taxswitch = document.getElementById("flexSwitchCheckDefault");
-taxswitch.addEventListener("click", () =>
-{
-  let taxinfo = document.getElementsByClassName("tax-info")
-  for (info of taxinfo)
-  {
+taxswitch.addEventListener("click", () => {
+  let taxinfo = document.getElementsByClassName("tax-info");
+  for (info of taxinfo) {
     if (info.style.display != "inline") {
       info.style.display = "inline";
-    }
-    else
-    {
+    } else {
       info.style.display = "none";
     }
   }
+});
+
+// for close flash_div
+// Get all elements with the class "flash_div" and "close_icon"
+// Get all elements with the class "close_icon"
+const closeBtns = document.getElementsByClassName("close_icon");
+
+// Loop through each close button
+for (let i = 0; i < closeBtns.length; i++) {
+  closeBtns[i].addEventListener("click", function () {
+    console.log("close_btn clicked");
+
+    // Find the closest parent div with class 'flash_div' and hide it
+    const flashDiv = closeBtns[i].closest(".flash_div");
+    if (flashDiv) {
+      flashDiv.style.display = "none";
+    }
+  });
 }
-)

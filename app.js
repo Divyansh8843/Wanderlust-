@@ -1,20 +1,19 @@
-// NPM Common use packages 
+// NPM Common use packages
 const express = require("express");
 const app = express();
 const port = 8080;
 const path = require("path");
-const session = require("express-session")
+const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const flash = require("connect-flash")
+const flash = require("connect-flash");
 const passport = require("passport");
-const LocalStrategy=require("passport-local").Strategy
-const User = require("./models/users.js")
-if (process.env.NODE_ENV != "production") // not upload in git hub
-{
-require("dotenv").config();
+const LocalStrategy = require("passport-local").Strategy;
+const User = require("./models/users.js");
+if (process.env.NODE_ENV != "production") {
+  // not upload in git hub
+  require("dotenv").config();
 }
-
-// MONGOOSE DB connection 
+// MONGOOSE DB connection
 const dbURL = process.env.ATLASDB_URL;
 const mongoose = require("mongoose");
 main().catch((err) => console.log(err));
@@ -23,21 +22,20 @@ async function main() {
 }
 
 // For parsing JSON data
-app.use(express.json()); 
+app.use(express.json());
 // For parsing URL-encoded data
-app.use(express.urlencoded({ extended: true })); 
-// for ejs 
+app.use(express.urlencoded({ extended: true }));
+// for ejs
 const ejsMate = require("ejs-mate");
-const listingRouter = require("./routes/listings.js")
-const reviewRouter = require("./routes/reviews.js")
-const userRouter=require("./routes/user.js");
+const listingRouter = require("./routes/listings.js");
+const reviewRouter = require("./routes/reviews.js");
+const userRouter = require("./routes/user.js");
 
 // Set EJS Mate as the templating engine
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
-app.set("view engine", "ejs");
-app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
 
 // use mongo session for production purpose(valid upto default 14 days)
 const store = MongoStore.create({
@@ -47,10 +45,9 @@ const store = MongoStore.create({
   },
   touchAfter: 24 * 3600,
 });
-store.on("error" ,() =>
-{
+store.on("error", () => {
   console.log("Error in mongo session store", err);
-})
+});
 // session options
 const sessionoptions = {
   store,
@@ -70,24 +67,23 @@ app.use(session(sessionoptions));
 app.use(flash());
 
 // use local strategy and use with sessions (authentication part)
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// flash messages 
-app.use((req, res, next) =>
-{
+// flash messages
+app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
   next();
-})
-
+});
 app.use("/lists", listingRouter);
 app.use("/lists/:id/reviews", reviewRouter);
 app.use("/list", userRouter);
+
 // Error handling middleware
 // page not found
 app.all("*", (req, res, next) => {
@@ -99,20 +95,16 @@ app.use((err, req, res, next) => {
   // console.log("error with name");
   // console.log(err.name);
   if (err.name === "ValidationError") {
-    console.log("Validation error occured")
+    console.log("Validation error occured");
   }
   next(err);
 });
 
-app.use((err, req, res, next) =>
-{
+app.use((err, req, res, next) => {
   let { status = 500, message = "Error occured" } = err;
   // console.log("------Error------")
-  res.render("/includes/Error.ejs", {status, message });
-})
+  res.render("./includes/Error.ejs", { status, message });
+});
 app.listen(port, () => {
   console.log(`app is listening on port: ${port}`);
 });
-
-
-
