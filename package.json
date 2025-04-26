@@ -6,7 +6,9 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js",
+    "dev":"nodemon app.js",
+    "build":"vercel build"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +32,7 @@
     "nodemon": "^3.1.9",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^8.0.0"
+    "passport-local-mongoose": "^8.0.0",
+    "vercel": "^41.4.0"
   }
 }

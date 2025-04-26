@@ -13,6 +13,7 @@ if (process.env.NODE_ENV != "production") {
   // not upload in git hub
   require("dotenv").config();
 }
+
 // MONGOOSE DB connection
 const dbURL = process.env.ATLASDB_URL;
 const mongoose = require("mongoose");
@@ -48,6 +49,7 @@ const store = MongoStore.create({
 store.on("error", () => {
   console.log("Error in mongo session store", err);
 });
+
 // session options
 const sessionoptions = {
   store,
@@ -80,10 +82,14 @@ app.use((req, res, next) => {
   res.locals.currUser = req.user;
   next();
 });
+
 app.use("/lists", listingRouter);
 app.use("/lists/:id/reviews", reviewRouter);
 app.use("/list", userRouter);
-
+app.get("/",(req,res)=>
+{
+  res.send("main route")
+})
 // Error handling middleware
 // page not found
 app.all("*", (req, res, next) => {
@@ -105,6 +111,7 @@ app.use((err, req, res, next) => {
   // console.log("------Error------")
   res.render("./includes/Error.ejs", { status, message });
 });
+
 app.listen(port, () => {
   console.log(`app is listening on port: ${port}`);
 });

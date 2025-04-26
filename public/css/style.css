@@ -183,10 +183,13 @@
 .add-form {
   margin: 1% 33% !important;
   padding: 1% 3%;
+  align-items: center;
   border-radius: 2rem;
   width: 40%;
+  background-image: center;
+  background-size:contain;
   padding-bottom: 2%;
-  background: url("https://img.freepik.com/free-vector/geometric-gradient-futuristic-background_23-2149116406.jpg");
+  background: url("https://launchspace.net/wp-content/uploads/2021/09/image-53.png");
 }
 .col-12 {
   margin: 1% !important;
