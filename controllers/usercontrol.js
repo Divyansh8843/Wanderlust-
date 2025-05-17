@@ -8,20 +8,17 @@ module.exports.signupuser = async (req, res, next) => {
       email: req.body.user.email,
       username: req.body.user.username,
     });
-    console.log("tested");
     const registered_user = await User.register(
       newuser,
       `${req.body.user.password}`
     );
     // console.log(registered_user);
     // for automatic login after sign up
-    console.log("tested1");
     req.login(newuser, (err) => {
       if (err) {
         console.log("error occuered", err);
         return next(err);
       }
-      console.log("tested2");
       req.flash("success", "User registered  successfully!");
       res.redirect("/lists");
     });

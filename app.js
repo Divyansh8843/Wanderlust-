@@ -86,10 +86,6 @@ app.use((req, res, next) => {
 app.use("/lists", listingRouter);
 app.use("/lists/:id/reviews", reviewRouter);
 app.use("/list", userRouter);
-app.get("/",(req,res)=>
-{
-  res.send("main route")
-})
 // Error handling middleware
 // page not found
 app.all("*", (req, res, next) => {

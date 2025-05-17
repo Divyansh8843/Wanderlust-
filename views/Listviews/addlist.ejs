@@ -1,49 +1,54 @@
 <% layout("layouts/boilerplate.ejs") %>
-<form class="add-form row g-2 needs-validation" novalidate method="post" action="/list/add" enctype="multipart/form-data">
-    <h1 class="head-form">Add Form</h1>
-    <div class="col-12 ">
-        <label for="inputAddress" class="form-label">Title</label>
-        <input type="text" class="form-control" id="listing[title]" name="listing[title]" placeholder="Title" required>
-        <div class="invalid-feedback">
-            Title should be correct!
+    <form class="add-form row g-2 needs-validation" novalidate method="post" action="/list/add"
+        enctype="multipart/form-data">
+        <h1 class="head-form">Add Form</h1>
+        <div class="col-12 ">
+            <label for="inputAddress" class="form-label">Title</label>
+            <input type="text" class="form-control" id="listing[title]" name="listing[title]" placeholder="Title"
+                required>
+            <div class="invalid-feedback">
+                Title should be correct!
+            </div>
         </div>
-    </div>
-    <div class="col-12">
-        <label for="inputAddress" class="form-label">Description</label>
-        <input type="text" class="form-control" id="listing[description]" name="listing[description]"placeholder="Description" required>
-        <div class="invalid-feedback">
-            Description should be correct!
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Description</label>
+            <input type="text" class="form-control" id="listing[description]" name="listing[description]"
+                placeholder="Description" required>
+            <div class="invalid-feedback">
+                Description should be correct!
+            </div>
         </div>
-    </div>
-    <div class="col-12">
-        <label for="inputAddress" class="form-label">Upload Image</label>
-        <input type="file" class="form-control" id="listing[image]" name="listing[image]"
-        required>
-    </div>
-    <div class="col-12">
-        <label for="inputCity" class="form-label">Location</label>
-        <input type="text" class="form-control" id="listing[location]" name="listing[location]" placeholder="Location" required >
-        <div class="invalid-feedback">
-            Location should be correct!
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Upload Image</label>
+            <input type="file" class="form-control" id="listing[image]" name="listing[image]" required>
         </div>
-    </div>
-    <div class="col-12">
-        <label for="inputZip" class="form-label">Country</label>
-        <input type="text" class="form-control" id="listing[country]" name="listing[country]" placeholder="Country" required >
-        <div class="invalid-feedback">
-            Country should be correct!
+        <div class="col-12">
+            <label for="inputCity" class="form-label">Location</label>
+            <input type="text" class="form-control" id="listing[location]" name="listing[location]"
+                placeholder="Location" required>
+            <div class="invalid-feedback">
+                Location should be correct!
+            </div>
         </div>
-    </div>
-    <div class="col-12">
-        <label for="inputZip" class="form-label">Price</label>
-        <input type="text" class="form-control" id="listing[price]"name="listing[price]" placeholder="Price" required >
-        <div class="invalid-feedback">
-            Price should be correct!
+        <div class="col-12">
+            <label for="inputZip" class="form-label">Country</label>
+            <input type="text" class="form-control" id="listing[country]" name="listing[country]" placeholder="Country"
+                required>
+            <div class="invalid-feedback">
+                Country should be correct!
+            </div>
         </div>
-    </div>
+        <div class="col-12">
+            <label for="inputZip" class="form-label">Price</label>
+            <input type="text" class="form-control" id="listing[price]" name="listing[price]" placeholder="Price"
+                required>
+            <div class="invalid-feedback">
+                Price should be correct!
+            </div>
         </div>
-    </div>
-    <div class="col-12 addbtn">
-       <button type="submit" class="add btn btn-primary">Add</button>
-    </div>
-</form>
+        </div>
+        </div>
+        <div class="col-12 addbtn">
+            <button type="submit" class="add btn btn-primary">Add</button>
+        </div>
+    </form>

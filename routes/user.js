@@ -25,7 +25,6 @@ router
 router
   .route("/adduser")
   .get((req, res) => {
-    console.log("signup clicked");
     res.render("./userviews/newuser.ejs"); // Make sure the path to your EJS file is correct
   })
   .post(WrapAsync(UserController.signupuser));
