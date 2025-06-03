@@ -49,20 +49,16 @@ taxswitch.addEventListener("click", () => {
   }
 });
 
-// for close flash_div
-// Get all elements with the class "flash_div" and "close_icon"
-// Get all elements with the class "close_icon"
-const closeBtns = document.getElementsByClassName("close_icon");
-
-// Loop through each close button
-for (let i = 0; i < closeBtns.length; i++) {
-  closeBtns[i].addEventListener("click", function () {
-    console.log("close_btn clicked");
-
-    // Find the closest parent div with class 'flash_div' and hide it
-    const flashDiv = closeBtns[i].closest(".flash_div");
-    if (flashDiv) {
-      flashDiv.style.display = "none";
-    }
-  });
+function closeFlash(button) {
+  const flashDiv = button.parentElement;
+  flashDiv.classList.add('closing');
+  
+  // Wait for the animation to complete before removing the element
+  setTimeout(() => {
+      flashDiv.style.display = 'none';
+}, 300); 
 }
+
+
+// for map feauture
+const mapToken = "<%=process.env.MAP_ACCESS_TOKEN %>";

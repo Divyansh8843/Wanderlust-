@@ -51,7 +51,7 @@ const initdata = require("../init/data");
 // const Adddata = async () =>
 // { 
 //   await List.deleteMany({});
-//   initdata.data = initdata.data.map((obj) => ({...obj,owner:"6773896b3e1ef6343d501be5"}));
+//   initdata.data = initdata.data.map((obj) => ({...obj,owner:"68394a4d6644cb2cfe7162a6"}));
 //   await List.insertMany(initdata.data);
 //   console.log("data was initialized")
 // };

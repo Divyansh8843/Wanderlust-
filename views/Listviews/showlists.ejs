@@ -1,63 +1,72 @@
 <% layout("layouts/boilerplate.ejs") %>
-      <!-- <h5><%=success%></h5> -->
-      <!-- <h3 class="lists-head">All Lists</h3> -->
-       <!-- for panel -->
-       <div class="filters">
-        <div class="filter">
-        <i class="fa-solid fa-fire"></i>
-        <p>Trending</p>
-        </div>
-        <div class="filter">
-          <i class="fa-solid fa-bed"></i>
-          <p>Rooms</p>
-        </div>
-        <div class="filter">
-          <i class="fa-solid fa-mountain-city"></i>
-          <p>Iconic Cities</p>
-        </div><div class="filter">
-          <i class="fa-solid fa-mountain"></i>
-          <p>Mountains</p>
-        </div><div class="filter">
-          <i class="fa-brands fa-fort-awesome"></i>
-          <p>Castles</p>
-        </div><div class="filter">
-          <i class="fa-solid fa-person-swimming"></i>
-          <p>Amazing Pools</p>
-        </div><div class="filter">
-          <i class="fa-solid fa-campground"></i>
-          <p>Camping</p>
-        </div><div class="filter">
-          <i class="fa-solid fa-tractor"></i>
-          <p>Farms</p>
-        </div><div class="filter">
-          <i class="fa-regular fa-snowflake"></i>
-          <p>Arctic</p>
-        </div>
-        <div class="filter">
-          <i class="fa-solid fa-igloo"></i>
-          <p>Domes</p>
-        </div>
-        <div class="filter">
-        <i class="fa-solid fa-mug-saucer"></i>
-          <p>Breakfasts</p>
-        </div>
-        <div class="tax-toggle">
-          <div class="form-check-reverse form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
-          </div>
-       </div>
+  <!-- <h5><%=success%></h5> -->
+  <!-- <h3 class="lists-head">All Lists</h3> -->
+  <!-- for panel -->
+  <div class="filters">
+    <div class="filter">
+      <i class="fa-solid fa-fire"></i>
+      <p>Trending</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-bed"></i>
+      <p>Rooms</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-mountain-city"></i>
+      <p>Iconic Cities</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-mountain"></i>
+      <p>Mountains</p>
+    </div>
+    <div class="filter">
+      <i class="fa-brands fa-fort-awesome"></i>
+      <p>Castles</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-person-swimming"></i>
+      <p>Amazing Pools</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-campground"></i>
+      <p>Camping</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-tractor"></i>
+      <p>Farms</p>
+    </div>
+    <div class="filter">
+      <i class="fa-regular fa-snowflake"></i>
+      <p>Arctic</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-igloo"></i>
+      <p>Domes</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-mug-saucer"></i>
+      <p>Breakfasts</p>
+    </div>
+    <div class="tax-toggle">
+      <div class="form-check-reverse form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
       </div>
-       <div class="alllists">
-       <% for(list of lists){ %>
-        <div class="card list" style="width: 18rem;">
-          <a href="/lists/<%=list.id%>"><img src= <%=list.image.url%> class="card-img card-img-top" alt="listing_image"></a>
-          <div class="card-body">
-            <h5 class="card-title"><%=list.title%></h5>
-            <p class="card-price">&#8377; <%=list.price.toLocaleString("en-IN")%> /night&nbsp;&nbsp;<i class="tax-info">+18% GST</i></p>
-            <a href="/lists/<%=list.id%>" class="card-btn btn btn-primary">Read More</a>
-          </div>
+    </div>
+  </div>
+  <div class="alllists">
+    <% for(list of lists){ %>
+      <div class="card list" style="width: 18rem;">
+        <a href="/lists/<%=list.id%>"><img src=<%=list.image.url%> class="card-img card-img-top"
+          alt="listing_image"></a>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%=list.title%>
+          </h5>
+          <p class="card-price">&#8377; <%=list.price.toLocaleString("en-IN")%> /night&nbsp;&nbsp;<i
+                class="tax-info">+18% GST</i></p>
+          <a href="/lists/<%=list.id%>" class="card-btn btn btn-primary">View More</a>
         </div>
-<% } %>
-</div>
-      
+      </div>
+      <% } %>
+  </div>

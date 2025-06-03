@@ -109,3 +109,27 @@ module.exports.editlist = async (req, res, next) =>
   res.redirect(`/lists/${id}`);
 };
 
+module.exports.searchList=async(req,res,next)=>
+{
+  const query = req.query.q;
+
+    if (!query) {
+        return res.redirect("/lists"); // redirect to all listings if empty
+    }
+
+    const regex = new RegExp(escapeRegex(query), 'gi'); // case-insensitive partial match
+
+    const lists = await List.find({
+      $or: [
+          { title: regex },
+          { location: regex },
+          { country: regex },
+          { description: regex }
+      ]
+  });
+
+    res.render("./Listviews/searchResults.ejs", { lists, query });
+}
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}

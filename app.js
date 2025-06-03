@@ -1,7 +1,6 @@
 // NPM Common use packages
 const express = require("express");
 const app = express();
-const port = 8080;
 const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -13,7 +12,7 @@ if (process.env.NODE_ENV != "production") {
   // not upload in git hub
   require("dotenv").config();
 }
-
+const port = 8080 || process.env.PORT;
 // MONGOOSE DB connection
 const dbURL = process.env.ATLASDB_URL;
 const mongoose = require("mongoose");

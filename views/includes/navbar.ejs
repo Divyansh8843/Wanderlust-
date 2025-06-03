@@ -1,30 +1,34 @@
 <nav class="navbar navbar-expand bg-body-light  margin-0 padding-0 sticky-top ">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/lists"><i class="fa-solid fa-compass"></i><h3>Airbnb</h3></a>
+        <a class="navbar-brand" href="/lists"><i class="fa-solid fa-compass"></i>
+            <h3>Airbnb</h3>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-         
-            <div class="navbar-nav">
-                <a class="nav-link" href="/lists">Explore</a>
-            </div>
-            <div class="search-div">
-                <form class="d-flex" role="search">
-                    <input class="search_input form-control me-2" type="search" placeholder="Search Destinations" aria-label="Search">
-                    <button class="search_btn btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-                </form>
-            </div>
-            <div class="menu-btn mx-5">
-                <a class="nav-link" href="/list/add">Airbnb Your home</a>
-                <% if(!currUser){ %>
+        <div class="navbar-nav">
+            <a class="nav-link" href="/lists">Explore</a>
+        </div>
+        <div class="search-div">
+            <form class="d-flex" role="search" method="GET" action="/lists/list/search">
+                <input class="search_input form-control me-2" type="search" name="q" placeholder="Search Destinations" aria-label="Search">
+                <button class="search_btn btn btn-outline-success" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>Search
+                </button>
+            </form>
+        </div>
+        
+        <div class="menu-btn mx-5">
+            <a class="nav-link" href="/list/add">Airbnb Your home</a>
+            <% if(!currUser){ %>
                 <a class="nav-link" href="/list/finduser" id="signIn"><b>Sign In</b></a>
                 <a class="nav-link" href="/list/adduser" id="signUp"><b>Sign Up</b></a>
                 <% } %>
-                <% if(currUser){ %>
-                <a class="nav-link" href="/list/logout" id="logout"><b>Log Out</b></a>
-                <%}%>
-            </div>      
+                    <% if(currUser){ %>
+                        <a class="nav-link" href="/list/logout" id="logout"><b>Log Out</b></a>
+                        <%}%>
         </div>
+    </div>
     </div>
 </nav>

@@ -6,73 +6,103 @@
     <title>Wanderlust</title>
 </head> -->
 <% layout("layouts/boilerplate.ejs") %>
-<script>
-  const mapToken="<%=process.env.MAP_ACCESS_TOKEN %>";
-</script>
-<div class="card list-card" style="width: 25rem;">
-  <img src="<%=list.image.url%>" class="listimg card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="list-title card-title"><%=list.title%></h5>
-    <p class="list-text card-text"><%=list.description%></p>
-  </div>
-  <ul class="list-group list-group-flush"><li class="list-group-item">Owned by: <b><%=list.owner.username%></b></li>
-    <li class="list-group-item">&#8377;<%=list.price.toLocaleString("en-IN")%></li>
-    <li class="list-group-item"><%=list.location%></li>
-    <li class="list-group-item"><%=list.country%></li>
-  </ul>
-  <div class="review_div">
-  <%if(currUser){%>
-    <h4 class="head-review">Reviews:</h4>
-    <form class="user-form needs-validation" novalidate method="post" action="/lists/<%=list.id%>/reviews/add">
-      <h3>Leave a Review</h3>
-      <label for="inputEmail3" class="col-sm-2 col-form-label">Rating</label>
-      <fieldset class="starability-slot">
-        <input type="radio" id="no-rate" class="input-no-rate" name="new_rating" value="1" checked aria-label="No rating." />
-        <input type="radio" id="first-rate1" name="new_rating" value="1" />
-        <label for="first-rate1" title="Terrible">1 star</label>
-        <input type="radio" id="first-rate2" name="new_rating" value="2" />
-        <label for="first-rate2" title="Not good">2 stars</label>
-        <input type="radio" id="first-rate3" name="new_rating" value="3" />
-        <label for="first-rate3" title="Average">3 stars</label>
-        <input type="radio" id="first-rate4" name="new_rating" value="4" />
-        <label for="first-rate4" title="Very good">4 stars</label>
-        <input type="radio" id="first-rate5" name="new_rating" value="5" />
-        <label for="first-rate5" title="Amazing">5 stars</label>
-      </fieldset>
-      <div class="row mb-3">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Comment</label>
-        <div class="col-sm-10">
-          <textarea id="new_comment" name="new_comment" placeholder="Comment" required></textarea>
-          <div class="invalid-feedback">
-            please write some comments for reviews!
+  <div class="card list-card" style="width: 25rem;">
+    <img src="<%=list.image.url%>" class="listimg card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="list-title card-title">
+        <%=list.title%>
+      </h5>
+      <p class="list-text card-text">
+        <%=list.description%>
+      </p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Owned by: <b>
+          <%=list.owner.username%>
+        </b></li>
+      <li class="list-group-item">&#8377;<%=list.price.toLocaleString("en-IN")%></li>
+      <li class="list-group-item">
+        <%=list.location%>
+      </li>
+      <li class="list-group-item">
+        <%=list.country%>
+      </li>
+    </ul>
+    <div class="review_div">
+      <%if(currUser){%>
+        <h4 class="head-review">Reviews:</h4>
+        <form class="user-form needs-validation" novalidate method="post" action="/lists/<%=list.id%>/reviews/add">
+          <h3>Leave a Review</h3>
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Rating</label>
+          <fieldset class="starability-slot">
+            <input type="radio" id="no-rate" class="input-no-rate" name="new_rating" value="1" checked
+              aria-label="No rating." />
+            <input type="radio" id="first-rate1" name="new_rating" value="1" />
+            <label for="first-rate1" title="Terrible">1 star</label>
+            <input type="radio" id="first-rate2" name="new_rating" value="2" />
+            <label for="first-rate2" title="Not good">2 stars</label>
+            <input type="radio" id="first-rate3" name="new_rating" value="3" />
+            <label for="first-rate3" title="Average">3 stars</label>
+            <input type="radio" id="first-rate4" name="new_rating" value="4" />
+            <label for="first-rate4" title="Very good">4 stars</label>
+            <input type="radio" id="first-rate5" name="new_rating" value="5" />
+            <label for="first-rate5" title="Amazing">5 stars</label>
+          </fieldset>
+          <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Comment</label>
+            <div class="col-sm-10">
+              <textarea id="new_comment" name="new_comment" placeholder="Comment" required></textarea>
+              <div class="invalid-feedback">
+                please write some comments for reviews!
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <button type="submit" class="sign-upbtn btn btn-primary">Add Review</button>
-    </form>
-    <% } %>
-    <% for(review of list.reviews) { %>
-      <div class="reviews">
-      <h5 class="review-user">@<%=review.reviewer.username%></h5>
-      <p class="starability-result review-para" data-rating="<%= review.rating %>"></p>
-       <p class="review-para"><%= review.comment %></p>
-       <p class="review-para"><%= review.created_at.toDateString() %></p>
-       <%if(currUser && currUser._id.equals(review.reviewer._id)){%>
-      <a href="/lists/<%=list.id%>/reviews/<%=review.id%>/delete" class="delrev-btn card-btn btn btn-primary">Delete Review</a>
-      <%}%>
-      </div>
-      <% } %>
-      <!-- for map view -->
+          <button type="submit" class="sign-upbtn btn btn-primary">Add Review</button>
+        </form>
+        <% } %>
+          <% for(review of list.reviews) { %>
+            <div class="reviews">
+              <h5 class="review-user">@<%=review.reviewer.username%>
+              </h5>
+              <p class="starability-result review-para" data-rating="<%= review.rating %>"></p>
+              <p class="review-para">
+                <%= review.comment %>
+              </p>
+              <p class="review-para">
+                <%= review.created_at.toDateString() %>
+              </p>
+              <% if (currUser && currUser._id.equals(review.reviewer._id)) { %>
+                <a href="/lists/<%=list.id%>/reviews/<%=review.id%>/delete"
+                   class="delrev-btn card-btn btn btn-primary">Delete Review</a>
+              <% } %>              
+            </div>
+            <% } %>
+              <!-- for map view -->
+    </div>
+    <div class="card-body list-body">
+      <% if(currUser && currUser._id.equals(list.owner._id)){ %>
+        <a href="/lists/<%=list.id%>/edit" class="edit-btn card-btn btn btn-primary">Edit</a>
+        <a href="/lists/<%=list.id%>/delete" class="del-btn card-btn btn btn-primary">Delete</a>
+        <% } %>
     </div>
     <div class="col-sm-10 offset-1">
       <h4 class="map_head">Where You'll be</h4>
-      <div id="map"></div>
-   </div>
-  <div class="card-body list-body">
-    <% if(currUser && currUser._id.equals(list.owner._id)){ %>
-      <a href="/lists/<%=list.id%>/edit" class="edit-btn card-btn btn btn-primary">Edit</a>
-      <a href="/lists/<%=list.id%>/delete" class="del-btn card-btn btn btn-primary">Delete</a>
-      <% } %>
+      <section class="mapbox">
+        <figure>
+          <iframe
+            width="80%"
+            height="450"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=<%= encodeURIComponent(list.location) %>&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  
+          </iframe>
+        </figure>
+      </section>
+    </div>
+   
+
   </div>
-</div>
-<script src="/js/maps.js"></script>
+  <script src="/js/maps.js"></script>

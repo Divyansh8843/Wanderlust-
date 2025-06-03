@@ -1,5 +1,5 @@
-const List   = require("./models/Listing")
-const Review = require("./models/reviews")
+const List = require("./models/Listing");
+const Review = require("./models/reviews");
 
 // logged in middleware
 module.exports.isLoggedIn = (req, res, next) => {
@@ -12,18 +12,15 @@ module.exports.isLoggedIn = (req, res, next) => {
 };
 
 // redirect after log in middleware
-module.exports.saveRediretUrl = (req, res, next) =>
-{
-  if(req.session.redirectUrl)
-  {
-     res.locals.redirectUrl = req.session.redirectUrl;
+module.exports.saveRediretUrl = (req, res, next) => {
+  if (req.session.redirectUrl) {
+    res.locals.redirectUrl = req.session.redirectUrl;
   }
   next();
-}
+};
 
 // if List owner then have permission for edit and delete
-module.exports.isOwner = async (req, res, next) =>
-{
+module.exports.isOwner = async (req, res, next) => {
   let { id } = req.params;
   let list = await List.findById(`${id}`);
   if (!res.locals.currUser._id.equals(list.owner._id)) {
@@ -32,9 +29,9 @@ module.exports.isOwner = async (req, res, next) =>
   }
   next();
 };
+
 // if reveiw author then have permission for edit and delete
-module.exports.isAuthor = async (req, res, next) =>
-{
+module.exports.isAuthor = async (req, res, next) => {
   let { id, reviewid } = req.params;
   let review = await Review.findById(`${reviewid}`);
   if (!res.locals.currUser._id.equals(review.reviewer._id)) {
@@ -43,34 +40,3 @@ module.exports.isAuthor = async (req, res, next) =>
   }
   next();
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

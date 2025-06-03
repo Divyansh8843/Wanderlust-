@@ -21,6 +21,8 @@ router.get("/:id/delete", isLoggedIn, isOwner, WrapAsync(ListsController.deletel
 // edit a list from listing(combine on same route)
 router.route("/:id/edit").get(isOwner, isLoggedIn, WrapAsync(ListsController.editform)).post(isOwner, isLoggedIn, upload.single('new_image'), WrapAsync(ListsController.editlist));
 
+router.get("/list/search",WrapAsync(ListsController.searchList))
+
 module.exports = router;
 
 

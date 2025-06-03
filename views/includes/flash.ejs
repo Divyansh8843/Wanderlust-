@@ -2,12 +2,18 @@
 <%if(success && success.length){%>
     <div class="flash_div alert alert-success col-6 offset-3" role="alert">
         <%= success %>
+        <button class="close-btn" onclick="closeFlash(this)">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
     </div>
+<%}%>
+<!-- for error flash -->
+<%if(error && error.length){%>
+    <div class="flash_div alert alert-danger col-6 offset-3" role="alert">
+        <%= error %>
+        <button class="close-btn" onclick="closeFlash(this)">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+<%}%>
 
-    <%}%>
-        <!-- for error flash -->
-        <%if(error && error.length){%>
-            <div class="flash_div alert alert-danger col-6 offset-3" role="alert">
-                <%= error %>
-            </div>
-        <%}%>
